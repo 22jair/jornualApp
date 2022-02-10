@@ -10,8 +10,7 @@ export const startLoginEmailPassword = (email, password) => {
       .then(({ user }) => {
         dispatch(login(user.uid, user.displayName));
       })
-      .catch(e => {
-        console.log(e);
+      .catch(e => {        
         Swal.fire('Error', e.message, 'error');
       }).finally( () => {
         dispatch(finishLoading())
@@ -27,8 +26,7 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
         await user.updateProfile({ displayName: name });
         dispatch(login(user.uid, user.displayName));
       })
-      .catch(e => {
-        console.log(e);
+      .catch(e => {        
         Swal.fire('Error', e.message, 'error');
       }).finally( () => {
         dispatch(finishLoading())
@@ -41,8 +39,7 @@ export const startGoogleLogin = () => {
     firebase.auth().signInWithPopup(googleAuthProvider)
       .then( ({ user }) => {
         dispatch( login(user.uid, user.displayName) );
-      }).catch(e => {
-        console.log(e);
+      }).catch(e => {        
         Swal.fire('Error', e.message, 'error');
       }).finally( () => {
         dispatch(finishLoading())
