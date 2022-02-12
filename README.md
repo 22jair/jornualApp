@@ -20,7 +20,8 @@
 ![alt text](https://res.cloudinary.com/du8ple1i3/image/upload/v1644647249/zweelomzcxaondgjtiqb.png)
 
  Problem with MiniCssExtractPlugin
-  got to: node_modules\react-scripts\config\webpack.config.js
+  Solution:
+  got o: node_modules\react-scripts\config\webpack.config.js
   * change this line of code 
     const MiniCssExtractPlugin = require('mini-css-extract-plugin').default;
   * solution, remove ".default": 
