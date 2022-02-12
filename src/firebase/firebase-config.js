@@ -2,13 +2,17 @@ import firebase from "firebase/app";
 import 'firebase/firestore';
 import 'firebase/auth';
 
+const { REACT_APP_FIREBASE_API_KEY, REACT_APP_FIREBASE_AUTH_DOMAIN, REACT_APP_FIREBASE_PROJECT_ID,
+        REACT_APP_FIREBASE_STORAGE_BUCKET, REACT_APP_FIREBASE_MESSAGING_SENDER_ID, REACT_APP_FIREBASE_APP_ID
+      } = process.env;
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCYYrDUBsDP57pT38Kwty5mygnCXqlc9vY",
-  authDomain: "react-app-cursos-5d57e.firebaseapp.com",
-  projectId: "react-app-cursos-5d57e",
-  storageBucket: "react-app-cursos-5d57e.appspot.com",
-  messagingSenderId: "403604794244",
-  appId: "1:403604794244:web:5c84d7664a4f6ad629cbd1"
+  apiKey: REACT_APP_FIREBASE_API_KEY || '',
+  authDomain: REACT_APP_FIREBASE_AUTH_DOMAIN || '',
+  projectId: REACT_APP_FIREBASE_PROJECT_ID || '',
+  storageBucket: REACT_APP_FIREBASE_STORAGE_BUCKET || '',
+  messagingSenderId: REACT_APP_FIREBASE_MESSAGING_SENDER_ID || '',
+  appId: REACT_APP_FIREBASE_APP_ID || ''
 };
 
 firebase.initializeApp(firebaseConfig);

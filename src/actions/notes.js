@@ -5,7 +5,7 @@ import { loadNotes } from "../helpers/loadNotes";
 import { types } from "../types/types";
 
 export const startNewNote = () => {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const uid = getState().auth.uid;
     const newNote = {
       title: '',
@@ -13,8 +13,21 @@ export const startNewNote = () => {
       date: new Date().getTime()
     }
     try{
-      const doc = db.collection(`${uid}/journal/notes`).add( newNote );
+
+      Swal.fire({
+        title:'Creating new note...',
+        text: 'Please wait...',
+        allowOutsideClick: false,
+        showConfirmButton:false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      })
+      const doc = await db.collection(`${uid}/journal/notes`).add( newNote );
+      console.log("New note added: ", doc);
       dispatch( activeNote( doc.id, newNote ) );  
+      dispatch( addNewNote( doc.id, newNote ) );
+      Swal.close();
     }catch(error){
       //console.log(error.message);
       console.log("startNewNote");
@@ -28,6 +41,13 @@ export const activeNote = (id, note) => {
   return {
     type: types.notesActive,
     payload: { id, ...note }
+  }
+}
+
+export const addNewNote = ( id, note ) => {
+  return {
+    type: types.notesAddNew,
+    payload:{ id, ...note }
   }
 }
 
@@ -49,8 +69,8 @@ export const startSaveNote = (note) => {
   return async ( dispatch, getState ) => {
     const { uid } = getState().auth;
     const noteToSave = { ...note };
-    delete noteToSave.id;  
-    console.log(note);
+    delete noteToSave.id;
+    !noteToSave.url && delete noteToSave.url;
     try{
       await db.collection(`${uid}/journal/notes`).doc(note.id).update(noteToSave);
       // This work but is not the best way to do it
@@ -131,5 +151,11 @@ export const deleteNote = ( id ) => {
   return {
     type: types.notesDelete,
     payload: id
+  }
+}
+
+export const noteLoggout = () => {
+  return {
+    type: types.notesLogoutCleaning
   }
 }

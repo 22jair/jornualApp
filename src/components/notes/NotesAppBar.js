@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startSaveNote, startUploading } from '../../actions/notes';
+import Swal from 'sweetalert2';
 
 export const NotesAppBar = () => {
 
@@ -12,8 +13,19 @@ export const NotesAppBar = () => {
   }
 
   const handlePictureClick = () => {
-    const fileInput = document.getElementById('fileSelector');
-    fileInput.click();
+    Swal.fire({
+      title: 'Picture will be saved to your note automaticaly, do you want to continue?',        
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const fileInput = document.getElementById('fileSelector');
+        fileInput.click();
+      }
+    })      
   }
 
   const handleFileChange = (e) => {

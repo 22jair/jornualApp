@@ -1,20 +1,45 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../actions/auth';
-import { startNewNote } from '../../actions/notes';
+import { noteLoggout, startNewNote } from '../../actions/notes';
 import { JournalEntries } from './JournalEntries';
+import Swal from 'sweetalert2';
 
 export const Sidebar = () => {
 
   const { name } = useSelector( state => state.auth );
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    dispatch( startLogout() );
+  const handleLogout = () => {    
+    Swal.fire({
+      title: 'Do you want to Logout?',        
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch( startLogout() );
+        dispatch( noteLoggout() );
+      }
+    })  
   }
 
   const handleAddNew = () => {
-    dispatch( startNewNote() );
+    Swal.fire({
+      title: 'You want to add new Entry?',
+      text: "This Note will be saved to your journal.",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch( startNewNote() );
+      }
+    })
   }
 
   return (

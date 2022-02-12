@@ -15,7 +15,10 @@ export const JournalEntry = ({ id, date, body, title, url }) => {
   const noteDate = moment(date);
 
   return (
-    <div className='journal__entry pointer' onClick={handleEntryClick}>
+    <div
+      className='journal__entry pointer animate__animated animate__fadeIn animate__faster'
+      onClick={handleEntryClick}
+    >
       { url && (
           <div 
             className='journal__entry-picture'
@@ -27,10 +30,10 @@ export const JournalEntry = ({ id, date, body, title, url }) => {
       )}
       <div className='jorunal__entry-body'>
         <p className='journal__entry-title'>
-          { title }
+          { title ? title : "No title" }
         </p>
         <p className='journal__entry-content'>
-          { body }
+          { body ? body : "No content" }
         </p>
       </div>
       <div className='journal__entry-date-box'>
