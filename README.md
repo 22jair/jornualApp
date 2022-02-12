@@ -1,7 +1,7 @@
-## DEPLOYED IN NETLYFY
+# DEPLOYED IN NETLYFY
   * https://22jairllljournalapp.netlify.app/
 
-## TECHNOLOGIES
+# TECHNOLOGIES
   ### REACT JS 
     * MAIN LIBRARY
   ### REDUX AND REDUX-THUNK
@@ -15,8 +15,11 @@
   ### CLOUDINARY 
     * Storage pictures
 
+![alt text](https://res.cloudinary.com/du8ple1i3/image/upload/v1644647236/eyvmwhouxhdcemq8ervt.png)
+![alt text](https://res.cloudinary.com/du8ple1i3/image/upload/v1644647244/fixf3zmlizlzqorggugv.png)
+![alt text](https://res.cloudinary.com/du8ple1i3/image/upload/v1644647249/zweelomzcxaondgjtiqb.png)
 
-* Problem with MiniCssExtractPlugin
+ Problem with MiniCssExtractPlugin
   got to: node_modules\react-scripts\config\webpack.config.js
   * change this line of code 
     const MiniCssExtractPlugin = require('mini-css-extract-plugin').default;
