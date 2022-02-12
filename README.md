@@ -21,7 +21,8 @@
 
  Problem with MiniCssExtractPlugin
   Solution:
-  got o: node_modules\react-scripts\config\webpack.config.js
+  go to:
+  node_modules\react-scripts\config\webpack.config.js
   * change this line of code 
     const MiniCssExtractPlugin = require('mini-css-extract-plugin').default;
   * solution, remove ".default": 
