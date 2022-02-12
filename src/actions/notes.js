@@ -72,6 +72,15 @@ export const startSaveNote = (note) => {
     delete noteToSave.id;
     !noteToSave.url && delete noteToSave.url;
     try{
+      Swal.fire({
+        title:'Saving note...',
+        text: 'Please wait...',
+        allowOutsideClick: false,
+        showConfirmButton:false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      })            
       await db.collection(`${uid}/journal/notes`).doc(note.id).update(noteToSave);
       // This work but is not the best way to do it
       // cuz here we are using the same function to load all notes
@@ -79,6 +88,7 @@ export const startSaveNote = (note) => {
       // -----------------------------------------------------
       // dispatch( startLoadingNotes( uid ) );
       dispatch( refreshNote( note.id, noteToSave ) );
+      Swal.close();
       Swal.fire('Saved', note.title, 'success');
     }catch(error){
       console.log(error.message);

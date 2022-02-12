@@ -68,6 +68,12 @@
   justify-content: space-between;
   margin-bottom: 10px;
   overflow: hidden;
+  transition: .5s ease;
+  border: 1px transparent solid;
+  &:hover{
+    background-color: darken($color: white, $amount: 25);
+    border: 1px solid $primary;
+  }
 }
 
 .journal__entry-picture{

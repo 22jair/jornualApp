@@ -8,6 +8,7 @@ import { login } from '../actions/auth';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
 import { startLoadingNotes } from '../actions/notes';
+import { SprinnerLoading } from '../components/SprinnerLoading';
 
 export const AppRouter = () => {
 
@@ -29,8 +30,8 @@ export const AppRouter = () => {
     });
   },[dispatch, setChecking, setIsLoggedIn])
 
-  if(checking) return <h1>Espere...</h1>;
-
+  if(checking) return <SprinnerLoading loading={checking} />;
+  
   return (
     <Router>
       <div>
